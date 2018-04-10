@@ -25,14 +25,16 @@ M             = length(t);
 eps           = 2*pi*rand(size(fwind)) ;               %random phase [0,2pi] to create the stochastic wind
 y             = M*real(ifft(pad2(bp.*exp(1i*eps),M))) ; % inverse Fourier to go to time domain!
 Vts           = [Vav+y]' ;                              % time series of velocity for 10 min
-VShearCol     = ConstantVShear*ones(length(t),1); % create shear for file 
+
 
 plot (t,Vts)  
 
-%% Create wind field file compied to windfield.mat files provided by David
+%% Create wind field file complied to windfield.mat files 
 if CreateWindfieldFile==1
 
-
+    
+    VShearCol     = ConstantVShear*ones(length(t),1); % create shear for file 
+    
     dy = 8;  % discretization of grid points in y direction
     dz = 8;  % discretization of grid points in z direction
     nt = length(t); % total time steps (can be seen as x direction)
